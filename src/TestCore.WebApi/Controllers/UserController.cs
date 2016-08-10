@@ -16,7 +16,7 @@ namespace TestCore.WebApi.Controllers
         private readonly IUserFactory _userFactory;
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService, IUserFactory userFactory)
+        public UserController([FromServices] IUserService userService, [FromServices] IUserFactory userFactory)
         {
             _userService = userService;
             _userFactory = userFactory;
