@@ -30,9 +30,6 @@ namespace TestCore.WebApi
         // This method gets called by the runtime. Use this method to add services to the container
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            //const string connection = @"Server=localhost;Database=TestCore;Trusted_Connection=True;";
-            //services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
-
             // Add framework services.
             services.AddMvc();
 
