@@ -11,8 +11,8 @@ namespace TestCore.BusinessLogic
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-            builder.RegisterType(typeof (UserService)).As(typeof (IUserService)).InstancePerRequest();
-            builder.RegisterType(typeof (UserDtoFactory)).As(typeof (IUserDtoFactory)).InstancePerRequest();
+            builder.RegisterType(typeof (UserService)).As(typeof (IUserService)).InstancePerLifetimeScope();
+            builder.RegisterType(typeof (UserDtoFactory)).As(typeof (IUserDtoFactory)).InstancePerLifetimeScope();
         }
     }
 }

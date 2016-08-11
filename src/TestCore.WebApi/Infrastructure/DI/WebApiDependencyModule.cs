@@ -11,7 +11,7 @@ namespace TestCore.WebApi.Infrastructure.DI
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-            builder.RegisterType(typeof (UserFactory)).As(typeof (IUserFactory)).InstancePerRequest();
+            builder.RegisterType(typeof (UserFactory)).As(typeof (IUserFactory)).InstancePerLifetimeScope();
             builder.Register(ctn => AutoMapperConfig.Configure()).SingleInstance();
             builder.Register(ctn => ctn.Resolve<MapperConfiguration>().CreateMapper()).SingleInstance();
         }

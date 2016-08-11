@@ -11,9 +11,9 @@ namespace TestCore.DataAccess
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-            builder.RegisterType<DataContext>().Named<DbContext>("DataContext").InstancePerRequest();
-            builder.RegisterType(typeof(DataContext)).As(typeof(DbContext)).InstancePerRequest();
-            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerRequest();
+            //builder.RegisterType<DataContext>().Named<DbContext>(Configuration["Data:DefaultConnection:ConnectionString"]).InstancePerLifetimeScope();
+            //builder.RegisterType(typeof(DataContext)).As(typeof(DbContext)).InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
         }
     }
 }
