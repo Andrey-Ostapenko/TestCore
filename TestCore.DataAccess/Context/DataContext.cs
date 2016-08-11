@@ -3,12 +3,19 @@ using TestCore.DataAccess.Model;
 
 namespace TestCore.DataAccess.Context
 {
-    public class DataContext : DbContext
+    public sealed class DataContext : DbContext
     {
-        public DataContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
+        public DataContext()
         {
+            Database.EnsureCreated();
         }
-
         public DbSet<UserData> Users { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var connectionString = "Data Source=localhost;Initial Catalog=TestCore;Integrated Security=true";
+            optionsBuilder.UseSqlServer(connectionString);
+            base.OnConfiguring(optionsBuilder);
+        }
     }
 }

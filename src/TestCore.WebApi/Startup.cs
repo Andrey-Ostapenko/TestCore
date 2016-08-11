@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TestCore.BusinessLogic;
 using TestCore.DataAccess;
+using TestCore.DataAccess.Context;
 using TestCore.WebApi.Infrastructure.DI;
 
 namespace TestCore.WebApi
@@ -31,6 +32,10 @@ namespace TestCore.WebApi
         // This method gets called by the runtime. Use this method to add services to the container
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            // Add framework services.
+            services.AddDbContext<DataContext>(options =>
+                options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+
             // Add framework services.
             services.AddMvc();
 
