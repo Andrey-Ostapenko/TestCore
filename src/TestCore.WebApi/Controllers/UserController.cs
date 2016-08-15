@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TestCore.BusinessLogic.Service.Interfaces;
 using TestCore.WebApi.Factories.Interfaces;
 using TestCore.WebApi.Model;
-
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace TestCore.WebApi.Controllers
 {
@@ -22,19 +20,39 @@ namespace TestCore.WebApi.Controllers
             _userFactory = userFactory;
         }
 
-        // GET api/values
+        // GET api/getAll
         [HttpGet]
-        public async Task<IEnumerable<UserModel>> GetAll()
+        public async Task<IActionResult> Get()
         {
-            var users = await _userService.GetAllUsers();
-            return users.Select(dto => _userFactory.CreateUserModel(dto));
+            var users = await _userService.Get();
+            return new JsonResult(users.Select(dto => _userFactory.CreateUserModel(dto)));
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get([FromBody] Guid id)
+        {
+            var user = await _userService.Get(id);
+            return new JsonResult(user);
+        }
 
-        [HttpPost]
-        public async Task InsertUser(UserModel userModel)
+        [HttpPost("{userModel}")]
+        public async Task Insert([FromBody] UserModel userModel)
         {
             await _userService.Insert(_userFactory.CreateUserDto(userModel));
+        }
+
+        [HttpPut("{userModel}")]
+        public async Task<IActionResult> Put([FromBody] UserModel userModel)
+        {
+            await _userService.Update(_userFactory.CreateUserDto(userModel));
+            return new OkResult();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromBody] Guid id)
+        {
+            await _userService.Delete(id);
+            return new NoContentResult();
         }
     }
 }

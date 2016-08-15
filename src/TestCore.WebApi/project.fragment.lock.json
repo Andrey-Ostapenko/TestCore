@@ -8,7 +8,7 @@
         "bin/Debug/TestCore.BusinessLogic.dll": {}
       },
       "runtime": {
-        "../packages/AutoMapper.5.0.2/lib/net45/AutoMapper.dll": {},
+        "../packages/AutoMapper.5.1.1/lib/net45/AutoMapper.dll": {},
         "../packages/Autofac.4.0.0/lib/net451/Autofac.dll": {},
         "../packages/Microsoft.EntityFrameworkCore.1.0.0/lib/net451/Microsoft.EntityFrameworkCore.dll": {},
         "../packages/Microsoft.EntityFrameworkCore.Relational.1.0.0/lib/net451/Microsoft.EntityFrameworkCore.Relational.dll": {},

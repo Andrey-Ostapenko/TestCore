@@ -26,10 +26,21 @@ namespace TestCore.BusinessLogic.Service.Implementation
         ///     Get all users
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<UserDto>> GetAllUsers()
+        public async Task<IEnumerable<UserDto>> Get()
         {
             var query = await _userRepository.Table.ToListAsync();
             return query.Select(data => _userDtoFactory.CreateUserDto(data));
+        }
+
+        /// <summary>
+        ///     Get user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<UserDto> Get(Guid id)
+        {
+            var query = await _userRepository.GetByIdAsync(id);
+            return _userDtoFactory.CreateUserDto(query);
         }
 
         /// <summary>
@@ -57,11 +68,11 @@ namespace TestCore.BusinessLogic.Service.Implementation
         /// <summary>
         ///     Delete user
         /// </summary>
-        /// <param name="userDto"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        public async Task Delete(UserDto userDto)
+        public async Task Delete(Guid id)
         {
-            var userData = await _userRepository.GetByIdAsync(userDto.Id);
+            var userData = await _userRepository.GetByIdAsync(id);
             await _userRepository.DeleteAsync(userData);
         }
     }

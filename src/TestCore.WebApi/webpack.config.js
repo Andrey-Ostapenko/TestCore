@@ -1,21 +1,8 @@
-﻿"use strict";
+/// <binding Clean='Run - Development' ProjectOpened='Run - Development, Run - Production' />
+var environment = (process.env.NODE_ENV || "development").trim();
 
-module.exports = {
-    entry: "./src/file.js",
-    output: {
-        filename: "./dist/bundle.js"
-    },
-    devServer: {
-        contentBase: ".",
-        host: "localhost",
-        port: 9000
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.jsx?$/,
-                loader: "babel-loader"
-            }
-        ]
-    }
-};
+if (environment === "development") {
+    module.exports = require('./webpack.dev.js');
+} else {
+    module.exports = require('./webpack.prod.js');
+}

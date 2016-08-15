@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TestCore.BusinessLogic.DTO;
 
@@ -10,7 +11,14 @@ namespace TestCore.BusinessLogic.Service.Interfaces
         ///     Get all users
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<UserDto>> GetAllUsers();
+        Task<IEnumerable<UserDto>> Get();
+
+        /// <summary>
+        ///     Get user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<UserDto> Get(Guid id);
 
         /// <summary>
         ///     Insert user
@@ -29,8 +37,8 @@ namespace TestCore.BusinessLogic.Service.Interfaces
         /// <summary>
         ///     Delete user
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        Task Delete(UserDto user);
+        Task Delete(Guid id);
     }
 }
