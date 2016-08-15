@@ -4,3 +4,4 @@ My test project TestCore
 2) AutoMapper
 3) ASP.NET CORE 
 4) Entity Framework 7 
+5) Angular 2
