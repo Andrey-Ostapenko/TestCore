@@ -19,7 +19,7 @@ var UserComponent = (function () {
     UserComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.userService
-            .GetAll()
+            .getAll()
             .subscribe(function (data) { return _this.values = data; }, function (error) { return console.log(error); }, function () { return console.log("Get all complete"); });
     };
     UserComponent = __decorate([

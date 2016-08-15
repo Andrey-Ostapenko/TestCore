@@ -17,22 +17,22 @@ var UserService = (function () {
         var _this = this;
         this._http = _http;
         this._configuration = _configuration;
-        this.GetAll = function () {
+        this.getAll = function () {
             return _this._http.get(_this.actionUrl).map(function (response) { return response.json(); });
         };
-        this.GetSingle = function (id) {
+        this.getSingle = function (id) {
             return _this._http.get(_this.actionUrl + id).map(function (res) { return res.json(); });
         };
-        this.Add = function (itemName) {
+        this.add = function (itemName) {
             var toAdd = JSON.stringify({ ItemName: itemName });
             return _this._http.post(_this.actionUrl, toAdd, { headers: _this.headers }).map(function (res) { return res.json(); });
         };
-        this.Update = function (id, itemToUpdate) {
+        this.update = function (itemToUpdate) {
             return _this._http
-                .put(_this.actionUrl + id, JSON.stringify(itemToUpdate), { headers: _this.headers })
+                .put(_this.actionUrl, JSON.stringify(itemToUpdate), { headers: _this.headers })
                 .map(function (res) { return res.json(); });
         };
-        this.Delete = function (id) {
+        this.delete = function (id) {
             return _this._http.delete(_this.actionUrl + id);
         };
         this.actionUrl = _configuration.Server + "api/user/";

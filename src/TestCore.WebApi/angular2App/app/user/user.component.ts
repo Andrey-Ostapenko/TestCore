@@ -21,7 +21,7 @@ export class UserComponent implements OnInit {
 
     ngOnInit() {
         this.userService
-            .GetAll()
+            .getAll()
             .subscribe(data => this.values = data,
                 error => console.log(error),
                 () => console.log("Get all complete"));

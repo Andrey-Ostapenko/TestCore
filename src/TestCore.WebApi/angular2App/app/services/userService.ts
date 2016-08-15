@@ -19,23 +19,23 @@ export class UserService {
         this.headers.append("Accept", "application/json");
     }
 
-    GetAll = (): Observable<any> => {
+    getAll = (): Observable<any> => {
         return this._http.get(this.actionUrl).map((response: Response) => <any>response.json());
     };
-    GetSingle = (id: number): Observable<Response> => {
+    getSingle = (id: string): Observable<Response> => {
         return this._http.get(this.actionUrl + id).map(res => res.json());
     };
-    Add = (itemName: string): Observable<Response> => {
+    add = (itemName: string): Observable<Response> => {
         var toAdd = JSON.stringify({ ItemName: itemName });
 
         return this._http.post(this.actionUrl, toAdd, { headers: this.headers }).map(res => res.json());
     };
-    Update = (id: number, itemToUpdate: any): Observable<Response> => {
+    update = (itemToUpdate: any): Observable<Response> => {
         return this._http
-            .put(this.actionUrl + id, JSON.stringify(itemToUpdate), { headers: this.headers })
+            .put(this.actionUrl, JSON.stringify(itemToUpdate), { headers: this.headers })
             .map(res => res.json());
     };
-    Delete = (id: number): Observable<Response> => {
+    delete = (id: string): Observable<Response> => {
         return this._http.delete(this.actionUrl + id);
     };
 }
