@@ -26,4 +26,30 @@ export class UserComponent implements OnInit {
                 error => console.log(error),
                 () => console.log("Get all complete"));
     }
+
+    createUser() {
+        var userName = prompt("Enter Username");
+        this.userService.add({ userName: userName })
+            .subscribe(data => console.log(data),
+                error => console.log(error),
+                () => console.log("Add user complete"));
+        location.reload();
+    }
+
+    editUser(id: string, userName: string) {
+        userName = prompt("Enter Username", userName);
+        this.userService.update({ id, userName })
+            .subscribe(data => console.log(data),
+                error => console.log(error),
+                () => console.log("Update user complete"));
+        location.reload();
+    }
+
+    deleteUser(id: string) {
+        this.userService.delete(id)
+            .subscribe(data => console.log(data),
+                error => console.log(error),
+                () => console.log("Delete user complete"));
+        location.reload();
+    }
 }

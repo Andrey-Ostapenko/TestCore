@@ -23,19 +23,19 @@ var UserService = (function () {
         this.getSingle = function (id) {
             return _this._http.get(_this.actionUrl + id).map(function (res) { return res.json(); });
         };
-        this.add = function (itemName) {
-            var toAdd = JSON.stringify({ ItemName: itemName });
+        this.add = function (userModel) {
+            var toAdd = JSON.stringify(userModel);
             return _this._http.post(_this.actionUrl, toAdd, { headers: _this.headers }).map(function (res) { return res.json(); });
         };
-        this.update = function (itemToUpdate) {
+        this.update = function (userModel) {
             return _this._http
-                .put(_this.actionUrl, JSON.stringify(itemToUpdate), { headers: _this.headers })
+                .put(_this.actionUrl, JSON.stringify(userModel), { headers: _this.headers })
                 .map(function (res) { return res.json(); });
         };
         this.delete = function (id) {
             return _this._http.delete(_this.actionUrl + id);
         };
-        this.actionUrl = _configuration.Server + "api/user/";
+        this.actionUrl = _configuration.server + "api/user/";
         this.headers = new http_1.Headers();
         this.headers.append("Content-Type", "application/json");
         this.headers.append("Accept", "application/json");

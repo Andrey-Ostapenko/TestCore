@@ -29,19 +29,19 @@ namespace TestCore.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get([FromBody] Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
             var user = await _userService.Get(id);
             return new JsonResult(user);
         }
 
-        [HttpPost("{userModel}")]
+        [HttpPost]
         public async Task Insert([FromBody] UserModel userModel)
         {
             await _userService.Insert(_userFactory.CreateUserDto(userModel));
         }
 
-        [HttpPut("{userModel}")]
+        [HttpPut]
         public async Task<IActionResult> Put([FromBody] UserModel userModel)
         {
             await _userService.Update(_userFactory.CreateUserDto(userModel));
@@ -49,7 +49,7 @@ namespace TestCore.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromBody] Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             await _userService.Delete(id);
             return new NoContentResult();

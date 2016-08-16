@@ -39,7 +39,6 @@ namespace TestCore.WebApi.Factories.Implementations
         /// <returns></returns>
         public UserDto CreateUserDto(UserModel userModel)
         {
-            userModel.Id = Guid.NewGuid();
             return _mapper.Map<UserDto>(userModel);
         }
     }

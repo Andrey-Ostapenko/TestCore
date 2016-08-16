@@ -22,6 +22,23 @@ var UserComponent = (function () {
             .getAll()
             .subscribe(function (data) { return _this.values = data; }, function (error) { return console.log(error); }, function () { return console.log("Get all complete"); });
     };
+    UserComponent.prototype.createUser = function () {
+        var userName = prompt("Enter Username");
+        this.userService.add({ userName: userName })
+            .subscribe(function (data) { return console.log(data); }, function (error) { return console.log(error); }, function () { return console.log("Add user complete"); });
+        location.reload();
+    };
+    UserComponent.prototype.editUser = function (id, userName) {
+        userName = prompt("Enter Username", userName);
+        this.userService.update({ id: id, userName: userName })
+            .subscribe(function (data) { return console.log(data); }, function (error) { return console.log(error); }, function () { return console.log("Update user complete"); });
+        location.reload();
+    };
+    UserComponent.prototype.deleteUser = function (id) {
+        this.userService.delete(id)
+            .subscribe(function (data) { return console.log(data); }, function (error) { return console.log(error); }, function () { return console.log("Delete user complete"); });
+        location.reload();
+    };
     UserComponent = __decorate([
         core_1.Component({
             selector: "usercomponent",

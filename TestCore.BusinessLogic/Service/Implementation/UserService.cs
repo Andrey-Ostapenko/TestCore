@@ -62,6 +62,7 @@ namespace TestCore.BusinessLogic.Service.Implementation
         public async Task Update(UserDto userDto)
         {
             var userData = await _userRepository.GetByIdAsync(userDto.Id);
+            userData.UserName = userDto.UserName;
             await _userRepository.UpdateAsync(userData);
         }
 

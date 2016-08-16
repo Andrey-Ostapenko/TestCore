@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var Configuration = (function () {
     function Configuration() {
-        this.Server = "http://localhost:52221/";
+        this.server = "http://localhost:52221/";
     }
     Configuration = __decorate([
         core_1.Injectable(), 

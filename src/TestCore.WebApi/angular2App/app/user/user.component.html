@@ -1,11 +1,34 @@
-﻿<div class="panel-group">
+﻿<p>{{message}}</p>
 
-    <p>{{message}}</p>
+<button (click)="createUser()">
+    Create
+</button>
 
-    <ul>
-        <li *ngFor="let value of values">
-            <span>ID: {{value.id}} </span>
-            <span>UserName: {{value.userName}} </span>
-        </li>
-    </ul>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>UserName</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let value of values">
+            <td>{{value.id}}</td>
+            <td>{{value.userName}}</td>
+            <td>
+                <button (click)="editUser(value.id, value.userName)">
+                    Edit
+                </button>
+            </td>
+            <td>
+                <button (click)="deleteUser(value.id)">
+                    Delete
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>

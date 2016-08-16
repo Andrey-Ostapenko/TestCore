@@ -12,7 +12,7 @@ export class UserService {
 
     constructor(private _http: Http, private _configuration: Configuration) {
 
-        this.actionUrl = _configuration.Server + "api/user/";
+        this.actionUrl = _configuration.server + "api/user/";
 
         this.headers = new Headers();
         this.headers.append("Content-Type", "application/json");
@@ -25,14 +25,14 @@ export class UserService {
     getSingle = (id: string): Observable<Response> => {
         return this._http.get(this.actionUrl + id).map(res => res.json());
     };
-    add = (itemName: string): Observable<Response> => {
-        var toAdd = JSON.stringify({ ItemName: itemName });
+    add = (userModel: any): Observable<Response> => {
+        var toAdd = JSON.stringify(userModel);
 
         return this._http.post(this.actionUrl, toAdd, { headers: this.headers }).map(res => res.json());
     };
-    update = (itemToUpdate: any): Observable<Response> => {
+    update = (userModel: any): Observable<Response> => {
         return this._http
-            .put(this.actionUrl, JSON.stringify(itemToUpdate), { headers: this.headers })
+            .put(this.actionUrl, JSON.stringify(userModel), { headers: this.headers })
             .map(res => res.json());
     };
     delete = (id: string): Observable<Response> => {
